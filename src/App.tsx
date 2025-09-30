@@ -13,6 +13,11 @@ export default function App() {
   const [page, setPage] = useState<string>("home");
   const components: string[] = [
     "Typography",
+    "Navigation Bar",
+    "Centered Navigation Bar",
+    "Hero Section",
+    "Cards",
+    "Footer"
   ];
 
   return (
