@@ -1,5 +1,5 @@
 import { useState } from "react"
-import RegularText from "./components/fonts";
+import { BaseText, SmallText } from "./components/fonts";
 
 export default function App() {
   
@@ -32,9 +32,11 @@ export default function App() {
       
       {page == "Fonts" && (
         <div className="p-4">
-          Sample Fonts
+          
+          <h1>Below font size changes depending on the screen size, you can also customize classNames.</h1><br/>
 
-          <RegularText>Hello there Friend</RegularText>
+          <BaseText>Base Text: average text size</BaseText>
+          <SmallText>Small Text: smaller than base text</SmallText>
 
         </div>
       )}
