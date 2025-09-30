@@ -1,9 +1,12 @@
 import { useState } from "react"
+import RegularText from "./components/fonts";
 
 export default function App() {
   
   const [page, setPage] = useState<string>("home");
-  const components: string[] = [];
+  const components: string[] = [
+    "Fonts",
+  ];
 
   return (
     <>
@@ -26,6 +29,15 @@ export default function App() {
       )}
 
       {/* All components are here... */}
+      
+      {page == "Fonts" && (
+        <div className="p-4">
+          Sample Fonts
+
+          <RegularText>Hello there Friend</RegularText>
+
+        </div>
+      )}
 
     </>
   )
