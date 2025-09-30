@@ -1,11 +1,18 @@
 import { useState } from "react"
-import { BaseText, HeadingText, SmallText } from "./components/fonts";
+import {
+  HeroHeadingText,
+  HeroSubHeadingText,
+  SubHeadingText,
+  BaseText,
+  CaptionText,
+  OverlineText,
+} from "./components/typography";
 
 export default function App() {
   
   const [page, setPage] = useState<string>("home");
   const components: string[] = [
-    "Fonts",
+    "Typography",
   ];
 
   return (
@@ -30,18 +37,17 @@ export default function App() {
 
       {/* All components are here... */}
       
-      {page == "Fonts" && (
-        <div className="p-4">
-          
-          <h1>Below font size changes depending on the screen size, you can also customize classNames.</h1><br/>
+      {page == "Typography" && (
+        <div className="space-y-4 p-6">
+          <OverlineText>New Release</OverlineText>
+          <HeroHeadingText>Build Better Apps</HeroHeadingText>
+          <HeroSubHeadingText>
+            With a simple and powerful design system
+          </HeroSubHeadingText>
 
-          <BaseText>Base Text: average text size</BaseText>
-          <SmallText>Small Text: smaller than base text</SmallText>
-
-          <br/><br/>
-
-          <HeadingText>Heading Text: an eye-catching leading text</HeadingText>
-
+          <SubHeadingText>Features</SubHeadingText>
+          <BaseText>Our tools make your workflow easier.</BaseText>
+          <CaptionText>* Early access available</CaptionText>
         </div>
       )}
 
