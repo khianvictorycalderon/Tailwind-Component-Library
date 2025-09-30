@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BaseText, SmallText } from "./components/fonts";
+import { BaseText, HeadingText, SmallText } from "./components/fonts";
 
 export default function App() {
   
@@ -37,6 +37,10 @@ export default function App() {
 
           <BaseText>Base Text: average text size</BaseText>
           <SmallText>Small Text: smaller than base text</SmallText>
+
+          <br/><br/>
+
+          <HeadingText>Heading Text: an eye-catching leading text</HeadingText>
 
         </div>
       )}
