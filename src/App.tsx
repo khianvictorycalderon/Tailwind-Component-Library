@@ -6,7 +6,7 @@ import {
   BaseText,
   CaptionText,
   OverlineText,
-} from "./components/typography";
+} from "./component/typography";
 
 export default function App() {
   

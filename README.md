@@ -1,11 +1,11 @@
-# Tailwind Components Library
+# Tailwind Component Library
 List of pre-made tailwind components for better UI and accelerated project development. These are optimized for small, medium, and large screens.
 
 ## Usage
-Copy the `.tsx` file you chose for your project inside the `src/components` folder, then import it to your project, then done!
+Copy the `.tsx` file you chose for your project inside the `src/component` folder, then import it to your project, then done!
 
 ## To run this project (General Steps):
-1. Clone this repository `git clone https://github.com/khianvictorycalderon/Tailwind-Components-Library.git`
+1. Clone this repository `git clone https://github.com/khianvictorycalderon/Tailwind-Component-Library.git`
 2. Run `npm install`
 3. Run `npm run dev`
 
