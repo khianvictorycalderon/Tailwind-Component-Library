@@ -7,14 +7,17 @@ interface NavBarProps {
   buttons: {
     label: React.ReactNode | string;
     action: () => void;
+    className?: string;
   }[];
+  buttonsAlignment?: "right" | "center"; // For tablet and desktop only
 }
 
 export function NavBar({
   className,
   image,
   title,
-  buttons
+  buttons,
+  buttonsAlignment = "right"
 }: NavBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,9 +25,9 @@ export function NavBar({
     <nav
       className={`fixed top-0 left-0 px-2 md:px-8 lg:px-32 w-full shadow z-50 ${className || ""}`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
         
-        {/* Logo + Title */}
+        {/* Logo + Title (always left) */}
         <div className="flex gap-2 items-center">
           {image && (
             <img
@@ -39,20 +42,26 @@ export function NavBar({
         </div>
 
         {/* Desktop/Tablet Buttons */}
-        <div className="hidden md:flex gap-4">
-          {buttons.map((btn, i) => (
+        <div
+        className={`hidden md:flex gap-4 ${
+            buttonsAlignment === "center"
+            ? "absolute left-1/2 -translate-x-1/2 z-10"
+            : "ml-auto"
+        }`}
+        >
+        {buttons.map((btn, i) => (
             <button
-              key={i}
-              onClick={btn.action}
-              className="px-4 py-2 rounded-xl transition cursor-pointer 
-                         hover:bg-white/10 hover:text-opacity-90"
+            key={i}
+            onClick={btn.action}
+            className={`px-4 py-2 rounded-xl transition cursor-pointer ${btn.className || ""}`}
             >
-              {btn.label}
+            {btn.label}
             </button>
-          ))}
+        ))}
         </div>
 
-        {/* Mobile Menu Toggle */}
+
+        {/* Mobile Menu Toggle (always right) */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -70,8 +79,8 @@ export function NavBar({
             <button
               key={`${btn.label}-${i}`}
               onClick={() => {
-                  setMobileOpen(false);
-                  btn.action();
+                setMobileOpen(false);
+                btn.action();
               }}
               className="block w-full text-center py-2"
             >

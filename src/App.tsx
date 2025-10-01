@@ -57,23 +57,53 @@ export default function App() {
         </div>
       )}
 
-      {page == "Navigation Bar" && (
+      {page === "Navigation Bar" && (
         <NavBar 
-          className="bg-gray-100 text-black"
-          image="picutre.png"
+          className="bg-gray-900 text-white shadow-lg"
+          image="picture.png"
           title="Business Store"
+          buttonsAlignment="right"
           buttons={[
             {
               label: "Home",
-              action: () => alert("Clicked home")
+              action: () => alert("Clicked Home"),
+              className: "hover:bg-gray-700 px-5 py-2 font-medium rounded-lg"
             },
             {
-              label: "About",
-              action: () => alert("Clicked About")
+              label: "Shop",
+              action: () => alert("Clicked Shop"),
+              className: "hover:bg-gray-700 px-5 py-2 font-medium rounded-lg"
             },
             {
-              label: <>Services</>,
-              action: () => alert("Clicked home")
+              label: "Contact",
+              action: () => alert("Clicked Contact"),
+              className: "hover:bg-gray-700 px-5 py-2 font-medium rounded-lg"
+            }
+          ]}
+        />
+      )}
+
+      {page === "Centered Navigation Bar" && (
+        <NavBar 
+          className="bg-white text-gray-900 border-b border-gray-200"
+          image="picture.png"
+          title="Creative Blog"
+          buttonsAlignment="center"
+          buttons={[
+            {
+              label: "Articles",
+              action: () => alert("Clicked Articles"),
+              className: "hover:bg-blue-100 hover:text-blue-600 px-5 py-2 font-medium rounded-lg"
+            },
+            {
+              label: "Tutorials",
+              action: () => alert("Clicked Tutorials"),
+              className: "hover:bg-blue-100 hover:text-blue-600 px-5 py-2 font-medium rounded-lg"
+            },
+            {
+              label: "About Me",
+              action: () => alert("Clicked About Me"),
+              className: "hover:bg-blue-100 hover:text-blue-600 px-5 py-2 font-medium rounded-lg"
             }
           ]}
         />
