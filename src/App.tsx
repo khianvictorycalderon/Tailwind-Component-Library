@@ -7,6 +7,7 @@ import {
   CaptionText,
   OverlineText,
 } from "./component/typography";
+import { NavBar } from "./component/navbar";
 
 export default function App() {
   
@@ -54,6 +55,28 @@ export default function App() {
           <BaseText>Our tools make your workflow easier.</BaseText>
           <CaptionText>* Early access available</CaptionText>
         </div>
+      )}
+
+      {page == "Navigation Bar" && (
+        <NavBar 
+          className="bg-gray-100 text-black"
+          image="picutre.png"
+          title="Business Store"
+          buttons={[
+            {
+              label: "Home",
+              action: () => alert("Clicked home")
+            },
+            {
+              label: "About",
+              action: () => alert("Clicked About")
+            },
+            {
+              label: <>Services</>,
+              action: () => alert("Clicked home")
+            }
+          ]}
+        />
       )}
 
     </>
