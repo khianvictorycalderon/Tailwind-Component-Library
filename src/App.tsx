@@ -8,6 +8,7 @@ import {
   OverlineText,
 } from "./component/typography";
 import { NavBar } from "./component/navbar";
+import { Hero } from "./component/hero";
 
 export default function App() {
   
@@ -108,6 +109,24 @@ export default function App() {
             }
           ]}
         />
+      )}
+
+      {page === "Hero Section" && (
+        <Hero
+          background="linear-gradient(135deg, #667eea, #764ba2)"
+          heading="Empower Your Ideas 🚀"
+          subheading="Build, deploy, and scale faster than ever with modern React tools."
+          cta_buttons={[
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full">
+              <BaseText className="text-white font-semibold">Get Started</BaseText>
+            </button>,
+            <button className="border border-white px-6 py-3 rounded-full">
+              <BaseText className="text-white font-semibold">Learn More</BaseText>
+            </button>,
+          ]}
+          logo="picture.png"
+        />
+
       )}
 
     </>
