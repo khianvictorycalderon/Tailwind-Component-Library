@@ -8,7 +8,7 @@ import {
   OverlineText,
 } from "./component/typography";
 import { NavBar } from "./component/navbar";
-import { Hero } from "./component/hero";
+import { CenteredHero, Hero } from "./component/hero";
 
 export default function App() {
   
@@ -38,7 +38,7 @@ export default function App() {
           </ul>
         </div>
       ) : (
-        <div className="fixed bottom-5 left-5 border-1 border-black rounded-lg p-2 cursor-pointer hover:bg-black hover:text-white transition duration-300" onClick={() => setPage("home")}>
+        <div className="fixed bottom-5 left-5 border-1 border-black rounded-lg p-2 cursor-pointer hover:bg-black hover:text-white transition duration-300 z-[999]" onClick={() => setPage("home")}>
           Back to Home
         </div>
       )}
@@ -126,7 +126,22 @@ export default function App() {
           ]}
           logo="picture.png"
         />
+      )}
 
+      {page === "Centered Hero Section" && (
+        <CenteredHero
+          background="linear-gradient(135deg, #1e3a8a, #3b82f6)"
+          heading="Welcome to the Future 🚀"
+          subheading="Craft amazing web experiences with modern tools."
+          cta_buttons={[
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full">
+              Get Started
+            </button>,
+            <button className="border border-white text-white px-6 py-3 rounded-full">
+              Learn More
+            </button>,
+          ]}
+        />
       )}
 
     </>
