@@ -19,7 +19,6 @@ export default function App() {
     "Centered Navigation Bar",
     "Hero Section",
     "Centered Hero Section",
-    "Cards",
     "Footer"
   ];
 
