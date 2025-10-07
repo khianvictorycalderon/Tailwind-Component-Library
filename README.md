@@ -16,6 +16,7 @@ This section is provided for reference only, to give you insight into how the pr
 
 ## Dependencies
 - `npm install tailwindcss @tailwindcss/vite`
+- `npm install gh-pages --save-dev`
 
 ## Configuration Dependencies
 - Update `vite.config.ts`:
