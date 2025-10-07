@@ -1,22 +1,11 @@
 import React from "react";
 
 export interface HeroProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Background can be a gradient, solid color, or image URL */
   background: string;
-
-  /** Main heading text */
   heading: React.ReactNode;
-
-  /** Secondary text under heading */
   subheading?: React.ReactNode;
-
-  /** Array of CTA buttons */
   cta_buttons?: React.ReactNode[];
-
-  /** Optional hero logo (hidden on mobile) */
   logo?: string;
-
-  /** Optional dark overlay opacity (0.0–1.0) */
   dark_cover_opacity?: number;
 }
 
@@ -46,15 +35,12 @@ export function Hero({
           : background,
       }}
     >
-      {/* === Dark Overlay === */}
       <div
         className="absolute inset-0 bg-black"
         style={{ opacity: dark_cover_opacity }}
       ></div>
 
-      {/* === Content === */}
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center w-full gap-10">
-        {/* Left Side */}
         <div className="flex-1 text-white space-y-6 text-center md:text-left">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
             {heading}
@@ -77,7 +63,6 @@ export function Hero({
           )}
         </div>
 
-        {/* Right Side (hidden on mobile) */}
         {logo && (
           <div className="hidden md:flex flex-1 justify-center md:justify-end">
             <img
@@ -91,3 +76,4 @@ export function Hero({
     </section>
   );
 }
+
