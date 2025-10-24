@@ -10,6 +10,7 @@ import {
 import { NavBar } from "./component/navbar";
 import { CenteredHero, Hero } from "./component/hero";
 import Footer from "./component/footer";
+import SectionContainer from "./component/section-container";
 
 export default function App() {
   
@@ -20,6 +21,7 @@ export default function App() {
     "Centered Navigation Bar",
     "Hero Section",
     "Centered Hero Section",
+    "Section Container",
     "Footer"
   ];
 
@@ -142,6 +144,17 @@ export default function App() {
             </button>,
           ]}
         />
+      )}
+
+      {page === "Section Container" && (
+        <>
+          <SectionContainer className="py-4">
+              <BaseText>This is a section container with pre-made X paddings based on Figma Web Design standard. Y padding is custom defined via className.</BaseText>
+          </SectionContainer>
+          <SectionContainer debugMode>
+              <BaseText>This one with debug border.</BaseText>
+          </SectionContainer>
+        </>
       )}
 
       {page === "Footer" && (
