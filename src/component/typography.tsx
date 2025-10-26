@@ -42,14 +42,14 @@ export function SmallText({ children, className, ...props }: SmallerTextProps) {
 
 export function HeadingText({ children, className, ...props }: HeadingTextProps) {
   return (
-    <h1
+    <h2
       className={`text-base md:text-lg lg:text-xl font-bold tracking-tight ${
         className || ""
       }`}
       {...props}
     >
       {children}
-    </h1>
+    </h2>
   );
 }
 
