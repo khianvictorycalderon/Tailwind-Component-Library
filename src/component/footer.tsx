@@ -25,10 +25,11 @@ export default function Footer({
 }: FooterProps) {
   return (
     <footer
-    {...rest}
-    className={`w-full border-t border-gray-700 bg-gray-900 text-white py-12 px-4 md:px-8 lg:px-32 ${className}`}
+      {...rest}
+      className={`w-full border-t border-gray-700 bg-gray-900 text-white py-12 px-4 md:px-8 lg:px-32 ${className}`}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-10">
+        
         <div className="flex flex-col items-center md:items-start space-y-6">
           <img src={logo} alt="Footer logo" className="w-40 object-contain" />
 
@@ -38,7 +39,7 @@ export default function Footer({
                 <button
                   key={i}
                   onClick={sub.onClick}
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity cursor-pointer"
                 >
                   {typeof sub.image === "string" ? (
                     <img
@@ -55,7 +56,7 @@ export default function Footer({
           )}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-${texts.length} gap-6 text-center md:text-left">
+        <div className={`grid grid-cols-2 sm:grid-cols-3 gap-6 text-center md:text-left`}>
           {texts.map((section, i) => (
             <div key={i} className="space-y-3">
               <h3 className="text-lg font-semibold">{section.title}</h3>
@@ -65,7 +66,7 @@ export default function Footer({
         </div>
       </div>
 
-      <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
+      <div className="mt-10 border-t border-white pt-6 text-center text-gray-400 text-sm">
         © {new Date().getFullYear()} All rights reserved.
       </div>
     </footer>
