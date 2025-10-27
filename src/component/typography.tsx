@@ -1,5 +1,6 @@
 import React from "react";
 
+// You can customize this depending on your project
 // ===== Base Props Interfaces =====
 
 // Paragraph text props
@@ -24,7 +25,7 @@ interface HeadingTextProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export function BaseText({ children, className, ...props }: RegularTextProps) {
   return (
-    <p className={`text-sm md:text-base lg:text-base ${className || ""}`} {...props}>
+    <p className={`text-sm md:text-base ${className || ""}`} {...props}>
       {children}
     </p>
   );
@@ -32,7 +33,7 @@ export function BaseText({ children, className, ...props }: RegularTextProps) {
 
 export function SmallText({ children, className, ...props }: SmallerTextProps) {
   return (
-    <span className={`text-xs md:text-sm lg:text-sm ${className || ""}`} {...props}>
+    <span className={`text-xs md:text-sm ${className || ""}`} {...props}>
       {children}
     </span>
   );
