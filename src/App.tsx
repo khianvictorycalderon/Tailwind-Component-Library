@@ -19,6 +19,7 @@ export default function App() {
     "Typography",
     "Navigation Bar",
     "Centered Navigation Bar",
+    "Side Bar",
     "Hero Section",
     "Centered Hero Section",
     "Section Container",
@@ -85,6 +86,11 @@ export default function App() {
             }
           ]}
         />
+      )}
+
+      {page == "Side Bar" && (
+        <>
+        </>
       )}
 
       {page === "Centered Navigation Bar" && (
