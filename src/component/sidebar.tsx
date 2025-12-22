@@ -10,6 +10,7 @@ interface SideBarProps {
   buttonsClassName?: string;
   className?: string;
   hamburgerClassName?: string;
+  footbar?: React.ReactNode | string; // optional footer
 }
 
 export function SideBar({
@@ -17,6 +18,7 @@ export function SideBar({
   buttonsClassName = "",
   className = "",
   hamburgerClassName = "",
+  footbar,
 }: SideBarProps) {
   const [open, setOpen] = useState(false);
 
@@ -46,12 +48,12 @@ export function SideBar({
       )}
 
       <aside
-        className={`${className} fixed top-0 left-0 z-40 h-screen w-64 transition-transform duration-300 will-change-transform bg-neutral-900 text-white`}
+        className={`${className} fixed top-0 left-0 z-40 h-screen w-64 transition-transform duration-300 will-change-transform bg-neutral-900 text-white flex flex-col`}
         style={{
           transform: open ? "translateX(0)" : "translateX(-100%)",
         }}
       >
-
+        
         <button
           onClick={() => setOpen(false)}
           aria-label="Close sidebar"
@@ -60,7 +62,7 @@ export function SideBar({
           ←
         </button>
 
-        <nav className="mt-16 flex flex-col gap-2 px-4">
+        <nav className="mt-16 flex-1 flex flex-col gap-2 px-4 overflow-y-auto">
           {buttons.map((item, idx) => (
             <button
               key={idx}
@@ -74,6 +76,12 @@ export function SideBar({
             </button>
           ))}
         </nav>
+
+        {footbar && (
+          <div className="px-4 py-4 text-sm border-t border-white/20">
+            {footbar}
+          </div>
+        )}
       </aside>
     </>
   );
