@@ -11,6 +11,7 @@ import { NavBar } from "./component/navbar";
 import { CenteredHero, Hero } from "./component/hero";
 import Footer from "./component/footer";
 import SectionContainer from "./component/section-container";
+import { SideBar } from "./component/sidebar";
 
 export default function App() {
   
@@ -90,6 +91,17 @@ export default function App() {
 
       {page == "Side Bar" && (
         <>
+          <SideBar
+            className="!bg-neutral-950"
+            hamburgerClassName="!bg-amber-500 hover:!bg-amber-400 transition duration-300"
+            buttonsClassName="flex items-center gap-2"
+            buttons={[
+              { label: <>Dashboard</>, action: () => alert("Dashboard clicked") },
+              { label: <>Settings</>, action: () => alert("Settings clicked") },
+              { label: "Profile", action: () => alert("Profile clicked") },
+            ]}
+          />
+          <p>Sample Content</p>
         </>
       )}
 
