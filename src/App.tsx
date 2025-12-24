@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   HeroHeadingText,
   HeroSubHeadingText,
@@ -12,6 +12,7 @@ import { CenteredHero, Hero } from "./component/hero";
 import Footer from "./component/footer";
 import SectionContainer from "./component/section-container";
 import { SideBar } from "./component/sidebar";
+import { ConfirmPopUp, MessagePopUp, PromptPopUp } from "./component/pop-up";
 
 export default function App() {
   
@@ -24,8 +25,28 @@ export default function App() {
     "Hero Section",
     "Centered Hero Section",
     "Section Container",
-    "Footer"
+    "Footer",
+    "Pop-Up Modal"
   ];
+
+  // For pop-up modals:
+  const [showMessage, setShowMessage] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [confirmValue, setConfirmValue] = useState(false);
+  const [promptValue, setPromptValue] = useState("");
+
+  useEffect(() => {
+    if (page == "Pop-Up Modal" && showConfirm === false) { // Optional: only alert after modal closes
+      alert(`Confirm value: ${confirmValue}`);
+    }
+  }, [showConfirm]);
+
+  useEffect(() => {
+    if (page == "Pop-Up Modal" && showPrompt === false) { // Optional: only alert after modal closes
+      alert(`Prompt value: ${promptValue}`);
+    }
+  }, [showPrompt]);
 
   return (
     <>
@@ -381,6 +402,61 @@ export default function App() {
             },
           ]}
         />
+      )}
+
+      {page === "Pop-Up Modal" && (
+        <div className="m-8">
+          <span>Click any of the following pop-up modal button</span>
+          <br />
+          <div className="flex flex-col gap-4 w-fit mt-4">
+            <button
+              className="px-6 py-2 bg-amber-500 text-white rounded-md shadow cursor-pointer"
+              onClick={() => setShowMessage(true)}
+            >
+              Message Pop-Up
+            </button>
+            <button
+              className="px-6 py-2 bg-purple-500 text-white rounded-md shadow cursor-pointer"
+              onClick={() => setShowConfirm(true)}
+            >
+              Confirm Pop-Up
+            </button>
+            <button
+              className="px-6 py-2 bg-cyan-500 text-white rounded-md shadow cursor-pointer"
+              onClick={() => setShowPrompt(true)}
+            >
+              Prompt Pop-Up
+            </button>
+          </div>
+
+          {/* Pop-Ups */}
+          {showMessage && (
+            <MessagePopUp
+              clickStrict
+              message="This is a message!"
+              onClose={() => setShowMessage(false)}
+            />
+          )}
+
+          {showConfirm && (
+            <ConfirmPopUp
+              theme="dark"
+              message="Are you sure?"
+              setValue={setConfirmValue}
+              onClose={() => setShowConfirm(false)}
+            />
+          )}
+
+          {showPrompt && (
+            <PromptPopUp
+              theme="dark"
+              message={<>Type <span className="text-blue-600 font-bold">anything</span>, just about anything</>}
+              value={promptValue}
+              setValue={setPromptValue}
+              onClose={() => setShowPrompt(false)}
+            />
+          )}
+        </div>
       )}
 
     </>
