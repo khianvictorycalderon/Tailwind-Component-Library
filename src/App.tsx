@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
   HeroHeadingText,
   HeroSubHeadingText,
@@ -33,20 +33,26 @@ export default function App() {
   const [showMessage, setShowMessage] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
-  const [confirmValue, setConfirmValue] = useState(false);
-  const [promptValue, setPromptValue] = useState("");
 
-  useEffect(() => {
-    if (page == "Pop-Up Modal" && showConfirm === false) { // Optional: only alert after modal closes
-      alert(`Confirm value: ${confirmValue}`);
-    }
-  }, [showConfirm]);
+  const handleConfirmPopUpOnConfirm = () => {
+    alert("Confirmed!");
+    setShowConfirm(false);
+  }
 
-  useEffect(() => {
-    if (page == "Pop-Up Modal" && showPrompt === false) { // Optional: only alert after modal closes
-      alert(`Prompt value: ${promptValue}`);
-    }
-  }, [showPrompt]);
+  const handleConfirmPopUpOnCancel = () => {
+    alert("Cancelled!");
+    setShowConfirm(false);
+  }
+
+  const handlePromptPopUpOnConfirm = (input: string) => {
+    alert(`Confirmed, your input is: ${input}`);
+    setShowPrompt(false)
+  }
+
+  const handlePromptPopUpOnCancel = () => {
+    alert("Cancelled Prompt");
+    setShowPrompt(false)
+  }
 
   return (
     <>
@@ -442,18 +448,17 @@ export default function App() {
             <ConfirmPopUp
               theme="dark"
               message="Are you sure?"
-              setValue={setConfirmValue}
-              onClose={() => setShowConfirm(false)}
+              onConfirm={handleConfirmPopUpOnConfirm}
+              onCancel={handleConfirmPopUpOnCancel}
             />
           )}
 
           {showPrompt && (
             <PromptPopUp
-              theme="dark"
+              theme="light"
               message={<>Type <span className="text-blue-600 font-bold">anything</span>, just about anything</>}
-              value={promptValue}
-              setValue={setPromptValue}
-              onClose={() => setShowPrompt(false)}
+              onConfirm={handlePromptPopUpOnConfirm}
+              onCancel={handlePromptPopUpOnCancel}
             />
           )}
         </div>
