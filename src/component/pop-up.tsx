@@ -18,6 +18,8 @@ export function MessagePopUp({
 }: MessagePopUpProps) {
   const isDark = theme === "dark";
 
+  if (!message) return;
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
@@ -74,6 +76,8 @@ export function ConfirmPopUp({
   onCancel = () => {},
 }: ConfirmPopUpProps) {
   const isDark = theme === "dark";
+
+  if (!message) return;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -150,6 +154,8 @@ export function PromptPopUp({
     setInput("");
     onCancel();
   };
+
+  if (!message) return;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
