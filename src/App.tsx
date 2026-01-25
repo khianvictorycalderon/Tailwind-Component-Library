@@ -30,29 +30,29 @@ export default function App() {
   ];
 
   // For pop-up modals:
-  const [showMessage, setShowMessage] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [messagePopup, setMessagePopup] = useState<React.ReactNode | null>(null);
+  const [confirmPopup, setConfirmPopup] = useState<React.ReactNode | null>(null);
+  const [promptPopup, setPromptPopup] = useState<React.ReactNode | null>(null);
 
   const handleConfirmPopUpOnConfirm = () => {
     alert("Confirmed!");
-    setShowConfirm(false);
-  }
+    setConfirmPopup(null);
+  };
 
   const handleConfirmPopUpOnCancel = () => {
     alert("Cancelled!");
-    setShowConfirm(false);
-  }
+    setConfirmPopup(null);
+  };
 
   const handlePromptPopUpOnConfirm = (input: string) => {
     alert(`Confirmed, your input is: ${input}`);
-    setShowPrompt(false)
-  }
+    setPromptPopup(null);
+  };
 
   const handlePromptPopUpOnCancel = () => {
     alert("Cancelled Prompt");
-    setShowPrompt(false)
-  }
+    setPromptPopup(null);
+  };
 
   return (
     <>
@@ -414,53 +414,59 @@ export default function App() {
         <div className="m-8">
           <span>Click any of the following pop-up modal button</span>
           <br />
+
           <div className="flex flex-col gap-4 w-fit mt-4">
             <button
               className="px-6 py-2 bg-amber-500 text-white rounded-md shadow cursor-pointer"
-              onClick={() => setShowMessage(true)}
+              onClick={() => setMessagePopup("This is a message!")}
             >
               Message Pop-Up
             </button>
+
             <button
               className="px-6 py-2 bg-purple-500 text-white rounded-md shadow cursor-pointer"
-              onClick={() => setShowConfirm(true)}
+              onClick={() => setConfirmPopup("Are you sure?")}
             >
               Confirm Pop-Up
             </button>
+
             <button
               className="px-6 py-2 bg-cyan-500 text-white rounded-md shadow cursor-pointer"
-              onClick={() => setShowPrompt(true)}
+              onClick={() =>
+                setPromptPopup(
+                  <>
+                    Type <span className="text-blue-600 font-bold">anything</span>, just about anything
+                  </>
+                )
+              }
             >
               Prompt Pop-Up
             </button>
           </div>
 
-          {/* Pop-Ups */}
-          {showMessage && (
-            <MessagePopUp
-              clickStrict
-              message="This is a message!"
-              onClose={() => setShowMessage(false)}
-            />
-          )}
+          {/* ---------------- */}
+          {/* Pop-Up Modals */}
+          {/* ---------------- */}
 
-          {showConfirm && (
-            <ConfirmPopUp
-              theme="dark"
-              message="Are you sure?"
-              onConfirm={handleConfirmPopUpOnConfirm}
-              onCancel={handleConfirmPopUpOnCancel}
-            />
-          )}
+          <MessagePopUp
+            clickStrict
+            message={messagePopup}
+            onClose={() => setMessagePopup(null)}
+          />
 
-          {showPrompt && (
-            <PromptPopUp
-              theme="light"
-              message={<>Type <span className="text-blue-600 font-bold">anything</span>, just about anything</>}
-              onConfirm={handlePromptPopUpOnConfirm}
-              onCancel={handlePromptPopUpOnCancel}
-            />
-          )}
+          <ConfirmPopUp
+            theme="dark"
+            message={confirmPopup}
+            onConfirm={handleConfirmPopUpOnConfirm}
+            onCancel={handleConfirmPopUpOnCancel}
+          />
+
+          <PromptPopUp
+            theme="light"
+            message={promptPopup}
+            onConfirm={handlePromptPopUpOnConfirm}
+            onCancel={handlePromptPopUpOnCancel}
+          />
         </div>
       )}
 
