@@ -149,7 +149,10 @@ export function PromptPopUp({
   const isDark = theme === "dark";
   const [input, setInput] = useState<string>("");
 
-  const handleConfirm = () => onConfirm(input);
+  const handleConfirm = () => {
+    setInput("");
+    onConfirm(input)
+  };
   const handleCancel = () => {
     setInput("");
     onCancel();
