@@ -455,14 +455,12 @@ export default function App() {
           />
 
           <ConfirmPopUp
-            theme="dark"
             message={confirmPopup}
             onConfirm={handleConfirmPopUpOnConfirm}
             onCancel={handleConfirmPopUpOnCancel}
           />
 
           <PromptPopUp
-            theme="light"
             message={promptPopup}
             onConfirm={handlePromptPopUpOnConfirm}
             onCancel={handlePromptPopUpOnCancel}

@@ -1,57 +1,68 @@
 import { useState } from "react";
 
+// Shared message content styles
+const messageContentClass =
+  "flex-1 overflow-y-auto overflow-x-hidden mb-4 break-words text-center";
+
 // ----------------------
 // Message
 // ----------------------
 interface MessagePopUpProps {
   message: React.ReactNode | string;
   clickStrict?: boolean;
-  theme?: "light" | "dark";
   onClose?: () => void;
 }
 
 export function MessagePopUp({
   message,
   clickStrict = false,
-  theme = "light",
   onClose = () => {},
 }: MessagePopUpProps) {
-  const isDark = theme === "dark";
-
-  if (!message) return;
+  if (!message) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className={`absolute inset-0 ${isDark ? "bg-black opacity-70" : "bg-black opacity-30"}`}
+        className="absolute inset-0 bg-black/30 dark:bg-black/70"
         onClick={() => !clickStrict && onClose()}
       />
 
       <div
-        className={`relative rounded-lg p-6 shadow-lg z-10 w-80 max-w-full ${
-          isDark ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"
-        }`}
+        className="
+          relative z-10
+          min-w-[30%] max-w-[80vw] max-h-[70vh]
+          rounded-lg p-6 shadow-lg
+          bg-white text-neutral-900
+          dark:bg-neutral-900 dark:text-white
+          flex flex-col
+        "
       >
         <button
-          className={`absolute top-2 right-2 cursor-pointer ${
-            isDark ? "text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-700"
-          }`}
+          className="
+            absolute top-2 right-2 cursor-pointer
+            text-gray-500 hover:text-gray-700
+            dark:text-gray-300 dark:hover:text-white
+          "
           onClick={onClose}
         >
           ✕
         </button>
 
-        <div className="text-center">
-          <p className="mb-4">{message}</p>
-          <button
-            className={`px-4 py-2 rounded cursor-pointer ${
-              isDark ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-500 hover:bg-blue-600"
-            } text-white`}
-            onClick={onClose}
-          >
-            Okay
-          </button>
+        <div className={messageContentClass}>
+          <p>{message}</p>
         </div>
+
+        <button
+          className="
+            px-4 py-2 rounded cursor-pointer
+            bg-blue-500 hover:bg-blue-600
+            dark:bg-blue-600 dark:hover:bg-blue-700
+            text-white
+          "
+          onClick={onClose}
+        >
+          Okay
+        </button>
       </div>
     </div>
   );
@@ -63,7 +74,6 @@ export function MessagePopUp({
 interface ConfirmPopUpProps {
   message: React.ReactNode | string;
   clickStrict?: boolean;
-  theme?: "light" | "dark";
   onConfirm?: () => void;
   onCancel?: () => void;
 }
@@ -71,57 +81,67 @@ interface ConfirmPopUpProps {
 export function ConfirmPopUp({
   message,
   clickStrict = false,
-  theme = "light",
   onConfirm = () => {},
   onCancel = () => {},
 }: ConfirmPopUpProps) {
-  const isDark = theme === "dark";
-
-  if (!message) return;
+  if (!message) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className={`absolute inset-0 ${isDark ? "bg-black opacity-70" : "bg-black opacity-30"}`}
+        className="absolute inset-0 bg-black/30 dark:bg-black/70"
         onClick={() => !clickStrict && onCancel()}
       />
 
       <div
-        className={`relative rounded-lg p-6 shadow-lg z-10 w-80 max-w-full ${
-          isDark ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"
-        }`}
+        className="
+          relative z-10
+          min-w-[30%] max-w-[80vw] max-h-[70vh]
+          rounded-lg p-6 shadow-lg
+          bg-white text-neutral-900
+          dark:bg-neutral-900 dark:text-white
+          flex flex-col
+        "
       >
         <button
-          className={`absolute top-2 right-2 cursor-pointer ${
-            isDark ? "text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-700"
-          }`}
+          className="
+            absolute top-2 right-2 cursor-pointer
+            text-gray-500 hover:text-gray-700
+            dark:text-gray-300 dark:hover:text-white
+          "
           onClick={onCancel}
         >
           ✕
         </button>
 
-        <div className="text-center">
-          <p className="mb-4">{message}</p>
+        <div className={messageContentClass}>
+          <p>{message}</p>
+        </div>
 
-          <div className="flex justify-center gap-4">
-            <button
-              className={`px-4 py-2 rounded cursor-pointer ${
-                isDark ? "bg-green-600 hover:bg-green-700" : "bg-green-500 hover:bg-green-600"
-              } text-white`}
-              onClick={onConfirm}
-            >
-              Confirm
-            </button>
+        <div className="flex justify-center gap-4">
+          <button
+            className="
+              px-4 py-2 rounded cursor-pointer
+              bg-green-500 hover:bg-green-600
+              dark:bg-green-600 dark:hover:bg-green-700
+              text-white
+            "
+            onClick={onConfirm}
+          >
+            Confirm
+          </button>
 
-            <button
-              className={`px-4 py-2 rounded cursor-pointer ${
-                isDark ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"
-              } text-white`}
-              onClick={onCancel}
-            >
-              Cancel
-            </button>
-          </div>
+          <button
+            className="
+              px-4 py-2 rounded cursor-pointer
+              bg-red-500 hover:bg-red-600
+              dark:bg-red-600 dark:hover:bg-red-700
+              text-white
+            "
+            onClick={onCancel}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -134,7 +154,6 @@ export function ConfirmPopUp({
 interface PromptPopUpProps {
   message: React.ReactNode | string;
   clickStrict?: boolean;
-  theme?: "light" | "dark";
   onConfirm?: (input: string) => void;
   onCancel?: () => void;
 }
@@ -142,78 +161,90 @@ interface PromptPopUpProps {
 export function PromptPopUp({
   message,
   clickStrict = false,
-  theme = "light",
-  onConfirm = (_input: string) => {},
+  onConfirm = () => {},
   onCancel = () => {},
 }: PromptPopUpProps) {
-  const isDark = theme === "dark";
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState("");
+
+  if (!message) return null;
 
   const handleConfirm = () => {
+    onConfirm(input);
     setInput("");
-    onConfirm(input)
   };
+
   const handleCancel = () => {
     setInput("");
     onCancel();
   };
 
-  if (!message) return;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className={`absolute inset-0 ${isDark ? "bg-black opacity-70" : "bg-black opacity-30"}`}
+        className="absolute inset-0 bg-black/30 dark:bg-black/70"
         onClick={() => !clickStrict && handleCancel()}
       />
 
       <div
-        className={`relative rounded-lg p-6 shadow-lg z-10 w-80 max-w-full ${
-          isDark ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"
-        }`}
+        className="
+          relative z-10
+          min-w-[30%] max-w-[80vw] max-h-[70vh]
+          rounded-lg p-6 shadow-lg
+          bg-white text-neutral-900
+          dark:bg-neutral-900 dark:text-white
+          flex flex-col
+        "
       >
         <button
-          className={`absolute top-2 right-2 cursor-pointer ${
-            isDark ? "text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-700"
-          }`}
+          className="
+            absolute top-2 right-2 cursor-pointer
+            text-gray-500 hover:text-gray-700
+            dark:text-gray-300 dark:hover:text-white
+          "
           onClick={handleCancel}
         >
           ✕
         </button>
 
-        <div className="text-center">
-          <p className="mb-4">{message}</p>
+        <div className={messageContentClass}>
+          <p>{message}</p>
+        </div>
 
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className={`border rounded p-2 w-full mb-4 ${
-              isDark
-                ? "bg-neutral-700 text-white border-neutral-600"
-                : "bg-white text-neutral-800 border-neutral-300"
-            }`}
-          />
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="
+            w-full mb-4 rounded border p-2
+            bg-white text-neutral-800 border-neutral-300
+            dark:bg-neutral-700 dark:text-white dark:border-neutral-600
+          "
+        />
 
-          <div className="flex justify-center gap-4">
-            <button
-              className={`px-4 py-2 rounded cursor-pointer ${
-                isDark ? "bg-green-600 hover:bg-green-700" : "bg-green-500 hover:bg-green-600"
-              } text-white`}
-              onClick={handleConfirm}
-            >
-              Confirm
-            </button>
+        <div className="flex justify-center gap-4">
+          <button
+            className="
+              px-4 py-2 rounded cursor-pointer
+              bg-green-500 hover:bg-green-600
+              dark:bg-green-600 dark:hover:bg-green-700
+              text-white
+            "
+            onClick={handleConfirm}
+          >
+            Confirm
+          </button>
 
-            <button
-              className={`px-4 py-2 rounded cursor-pointer ${
-                isDark ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"
-              } text-white`}
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-          </div>
+          <button
+            className="
+              px-4 py-2 rounded cursor-pointer
+              bg-red-500 hover:bg-red-600
+              dark:bg-red-600 dark:hover:bg-red-700
+              text-white
+            "
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
